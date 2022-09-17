@@ -15,7 +15,7 @@
 
 //函数声明
 void GPIO_Configuration(void);
-void Uart_init(int Buad);//串口初始化
+void Uart1_init(int Buad);//串口初始化
 void USART_SendByte(USART_TypeDef* USARTx, char  str); //发送字符
 void USART_SendString(USART_TypeDef* USARTx, char * str); //发送字符串
 void send_pack(long int * sendbuf); //发送包
@@ -52,13 +52,14 @@ void Delay(uint32_t nCount)
 int main(void)
 {
 	  GPIO_Configuration();
-	  Uart_init(9600);
+	  Uart1_init(9600);
 
 
       
 
     while (1)
-		{
+		{  //char ptr2 = {"hello"};
+		   //USART_SendString(USART1,*ptr2)
 		   PCout(13)=1;
 		   Delay(0xfffff);
 	       PCout(13)=0;
@@ -86,7 +87,7 @@ void GPIO_Configuration(void)
   GPIO_Init(GPIOC, &GPIO_InitStructure);
 }
 
-void Uart_init(int Buad)
+void Uart1_init(int Buad)
 {
    GPIO_InitTypeDef gpioinitstructure;
 	 USART_InitTypeDef USART_InitStructure;
